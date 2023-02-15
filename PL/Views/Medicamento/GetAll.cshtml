@@ -1,0 +1,44 @@
+﻿@model ML.Medicamentos
+
+@{
+    ViewBag.Title = "GetAll";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+
+    <h2>Alumnos</h2>
+
+    <table class="table table-responsive">
+        <thead>
+            <tr>
+                <th>Editar</th>
+                @*<th>Id Alumno</th>*@
+                <th>Skun</th>
+                <th>Nombre</th>
+                <th>Precio</th>
+                <th>Imagen</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (ML.Medicamentos medicamentos in Model.MedicamentosList)
+            {
+                <tr>
+                    <td class="text-center"><a class="btn btn-warning glyphicon glyphicon-edit" href="@Url.Action("Form", "Medicamento", new { IdMedicamento = medicamentos.IdMedicamentos})"></a></td>
+                    <td>@medicamentos.Skun</td>
+                    <td>@medicamentos.Nombre</td>
+                    <td>@medicamentos.Precio</td>
+                    @if (medicamentos.Imagen != null)
+                    {
+                        <td><img src="data:image/jpeg;base64,@medicamentos.Imagen" style="height:90px; width:90px" /></td>
+                    }
+                    else
+                    {
+                        <td> <img src="~/Imagen/index.jpg" style="height:120px; width:120px;" /> </td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+

@@ -1,0 +1,24 @@
+﻿@model ML.Medicamentos
+@{
+    ViewBag.Title = "GetAll";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>GetAll</h2>
+<div class="row">
+    @foreach (ML.Medicamentos medicamentos in Model.MedicamentosList)
+    {
+        <div class="col-sm-3">
+            <div class="card">
+                <div class="card-body">
+                    <img src="data:image/jpeg;base64,@medicamentos.Imagen" style="height:100px; width:100px" />
+                        <p class="card-text">@medicamentos.Skun</p>
+                        <p class="card-text">@medicamentos.Nombre</p>
+                        <p class="card-text">@medicamentos.Precio</p>
+                        <a href="@Url.Action("AgregarCarrito", "Pedido", new {IdMedicamentos=medicamentos.IdMedicamentos@*,Skun=medicamentos.Skun,Nombre=medicamentos.Nombre, Precio=medicamentos.Precio,Cantidad=medicamentos.Cantidad,Imagen=medicamentos.Imagen*@})" class="btn btn-success">Agregar al carrito</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
